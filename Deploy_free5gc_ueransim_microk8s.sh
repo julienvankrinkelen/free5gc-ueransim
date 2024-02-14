@@ -1,3 +1,5 @@
+user=root
+
 git clone https://github.com/free5gc/gtp5g.git && cd gtp5g
 make clean && make
 sudo make install
@@ -8,27 +10,31 @@ sudo apt-get install snapd
 sudo snap install notes 
 
 
-# Let's install the interface eth0
-sudo touch /etc/systemd/network/eth0.netdev
-sudo touch /etc/systemd/network/eth0.network
+# If eth0 interface does not exist, we install it. Otherwise skip this step.
+eth0=$(ifconfig |grep eth0)
+if [ -z "$eth0" ];then
+        echo "eth0 does not exist. Proceeding to its installation"	
+	sudo touch /etc/systemd/network/eth0.netdev
+	sudo touch /etc/systemd/network/eth0.network
 
-echo [NetDev] >> /etc/systemd/network/eth0.netdev
-echo Name=eth1 >> /etc/systemd/network/eth0.netdev
-echo  Kind=dummy >> /etc/systemd/network/eth0.netdev
+	echo [NetDev] >> /etc/systemd/network/eth0.netdev
+	echo Name=eth1 >> /etc/systemd/network/eth0.netdev
+	echo  Kind=dummy >> /etc/systemd/network/eth0.netdev
 
-echo [Match] >> /etc/systemd/network/eth0.network
-echo Name=eth1 >> /etc/systemd/network/eth0.network
-echo [Network] >> /etc/systemd/network/eth0.network
-echo Address=10.100.100.100 >> /etc/systemd/network/eth0.network
-echo Mask=255.255.255.0 >> /etc/systemd/network/eth0.network
+	echo [Match] >> /etc/systemd/network/eth0.network
+	echo Name=eth1 >> /etc/systemd/network/eth0.network
+	echo [Network] >> /etc/systemd/network/eth0.network
+	echo Address=10.100.100.100 >> /etc/systemd/network/eth0.network
+	echo Mask=255.255.255.0 >> /etc/systemd/network/eth0.network
 
-sudo systemctl restart systemd-networkd
+	sudo systemctl restart systemd-networkd
+fi
 
 sudo snap install microk8s --classic
 sudo snap list
 newgrp microk8s
-sudo usermod -a -G microk8s <userid_using_microk8s>
-sudo chown -f -R <userid_using_microk8s> ~/.kube
+sudo usermod -a -G microk8s $user
+sudo chown -f -R $user ~/.kube
 
 sudo microk8s disable ha-cluster --force
 
