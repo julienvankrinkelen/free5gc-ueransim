@@ -1,3 +1,4 @@
+#!/bin/bash
 user=root
 
 git clone https://github.com/free5gc/gtp5g.git && cd gtp5g
