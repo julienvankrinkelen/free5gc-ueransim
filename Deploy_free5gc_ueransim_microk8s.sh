@@ -7,7 +7,7 @@ sudo make install
 
 
 sudo apt -y install git gcc g++ cmake autoconf libtool pkg-config libmnl-dev libyaml-dev
-sudo apt-get install snapd 
+sudo apt-get install snapd -y
 sudo snap install notes 
 
 
@@ -32,7 +32,6 @@ if [ -z "$eth0" ];then
 fi
 
 sudo snap install microk8s --classic
-sudo snap list
 newgrp microk8s
 sudo usermod -a -G microk8s $user
 sudo chown -f -R $user ~/.kube
