@@ -8,7 +8,8 @@ git clone git@github.com:julienvankrinkelen/free5gc-ueransim.git && cd free5gc-u
 chmod 777 Deploy_free5gc_ueransim_microk8s.sh
 ```
 
-Then open the script and change user value by the name of the current user. By default, it is set to root.
+**Then open the script and change user value by the name of the current user. By default, it is set to root.**
+
 Now you can run the script
 ```
 ./Deploy_free5gc_ueransim_microk8s.sh
