@@ -1,4 +1,4 @@
-# free5gc-ueransim
+# free5gc-ueransim-microk8s
 
 A simple bash script to deploy Free5gc and UERANSIM on microk8s.
 
