@@ -19,8 +19,10 @@ When it has finished running, you can check the status of the pods by running
 watch sudo microk8s kubectl get pods -n free5gc
 ```
 Once the pods have finished deploying, you can go the free5gc webUI and create a user...
-Login: admin \n
-Password: free5gc \n
+
+Login: admin 
+
+Password: free5gc 
 
 ```
 microk8s kubectl port-forward --namespace free5gc svc/webui-service 5000:5000
