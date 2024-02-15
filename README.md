@@ -25,5 +25,5 @@ Login: admin
 Password: free5gc 
 
 ```
-microk8s kubectl port-forward --namespace free5gc svc/webui-service 5000:5000
+microk8s kubectl port-forward -n free5gc svc/webui-service 5000:5000
 ```
